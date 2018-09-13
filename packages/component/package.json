@@ -26,7 +26,8 @@
     "url": "https://github.com/b6pzeusbc54tvhw5jgpyw8pwz2x6gs/react-utterances/tree/master/packages/component"
   },
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "start": "babel src/ --out-dir lib/ --watch --verbose",
+    "build": "babel src/ --out-dir lib/ --verbose",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
