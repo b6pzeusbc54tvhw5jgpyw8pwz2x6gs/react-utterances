@@ -1,28 +1,62 @@
 .App {
-  text-align: center;
+  text-align: left;
+  min-width: 490px;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 60px;
+  float: left;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #e7eeff;
+  height: 190px;
   padding: 20px;
-  color: white;
+  color: #886ce4;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1.8rem;
+  margin: 0px;
+  margin-left: 5rem;
+  line-height: 60px;
 }
 
 .App-intro {
   font-size: large;
+  margin-left: 0rem;
+  max-width: 800px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,sans-serif;
+  line-height: 1.4;
+}
+.App-intro a {
+  text-decoration: none;
+  color: #886ce4;
+}
+.App-intro a:hover {
+  color: #b4a4ea;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Status-Buttons {
+  margin-top: 0em;
+  height: 32px;
+  min-width: 490px;
+}
+.Status-Buttons span {
+  margin-right: 1.2em;
+}
+.Status-Buttons .blogLink {
+  display: inline-block;
+  height: 28px;
+  line-height: 18px;
+  background-color: #886ce4;
+  border: 1px solid #000;
+  font-size: 0.8rem;
+  text-decoration: none;
+  padding: 4px 8px 4px 8px;
+  box-sizing: border-box;
+  color: #fff;
+  position: relative;
+  top: -11px;
 }
