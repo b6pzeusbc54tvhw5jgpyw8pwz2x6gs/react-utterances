@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField'
 import GithubCorner from 'react-github-corner'
 
 import './App.css'
-import ReactUtterences, { identifierTypes } from '../../component'
+import ReactUtterences, { identifierTypes } from 'react-utterances'
 
 const GITHUB_NAMESPACE = 'b6pzeusbc54tvhw5jgpyw8pwz2x6gs'
 const GITHUB_COMPONENT_REPO = 'react-utterances'
