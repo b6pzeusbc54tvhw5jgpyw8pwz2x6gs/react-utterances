@@ -1,6 +1,6 @@
 {
   "name": "react-utterances",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "React component for utterances",
   "keywords": [
     "utterances",
@@ -29,6 +29,5 @@
     "start": "babel src/ --out-dir lib/ --watch --verbose",
     "build": "babel src/ --out-dir lib/ --verbose",
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "dependencies": {}
+  }
 }
