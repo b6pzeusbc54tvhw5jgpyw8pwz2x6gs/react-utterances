@@ -1,0 +1,10 @@
+[*]
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+
+[COMMIT_EDITMSG]
+# max_line_length = 72
+# rulers = 72,120

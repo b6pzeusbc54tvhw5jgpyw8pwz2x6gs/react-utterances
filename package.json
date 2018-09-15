@@ -1,7 +1,8 @@
 {
-  "name": "workspace-root",
+  "name": "root",
   "private": true,
   "devDependencies": {
+    "husky": "^1.0.0-rc.14",
     "lerna": "^3.3.1",
     "wsrun": "^2.2.1"
   },
@@ -13,8 +14,19 @@
     "@babel/core": "^7.0.1",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.5.0",
     "eslint-plugin-react": "^7.11.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/b6pzeusbc54tvhw5jgpyw8pwz2x6gs/react-utterances.git"
   }
 }
