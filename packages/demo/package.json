@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.0.0",
