@@ -16,10 +16,10 @@ import GithubCorner from 'react-github-corner'
 import './App.css'
 import ReactUtterences, { identifierTypes } from 'react-utterances'
 
-const GITHUB_NAMESPACE = 'b6pzeusbc54tvhw5jgpyw8pwz2x6gs'
-const GITHUB_COMPONENT_REPO = 'react-utterances'
-const GITHUB_COMPONENT_REPO_URL = `https://github.com/${GITHUB_NAMESPACE}/${GITHUB_COMPONENT_REPO}`
-const GITHUB_DEMO_COMMENT_NAMESPACE_REPO = 'b6pzeusbc54tvhw5jgpyw8pwz2x6gs/aluc-io-comment'
+const GITHUB_NAMESPACE = process.env.GITHUB_NAMESPACE
+const GITHUB_REPO_COMMENTS = process.env.GITHUB_REPO_COMMENTS
+const GITHUB_REPO_REACT_UTTERANCES = process.env.GITHUB_REPO_REACT_UTTERANCES
+const GITHUB_URL_REACT_UTTERANCES = `https://github.com/${GITHUB_NAMESPACE}/${GITHUB_REPO_REACT_UTTERANCES}`
 
 const root = {
   display: 'flex',
@@ -113,7 +113,7 @@ class App extends Component {
             <a href='https://www.npmjs.com/package/react-utterances'>react-utterances</a> is the react component for <a href='https://utteranc.es'>utterances</a> that is a lightweight comments widget built on GitHub issues. To get started, checkout <a href='https://utteranc.es'>https://utteranc.es</a>
           </p>
           <div className='Status-Buttons'>
-            <a className="github-button" href={GITHUB_COMPONENT_REPO_URL} data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star on GitHub">Star</a>
+          <a className="github-button" href={GITHUB_URL_REACT_UTTERANCES} data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star on GitHub">Star</a>
             <a className="github-button" href={`https://github.com/${GITHUB_NAMESPACE}`} data-size="large" aria-label="Follow @alfreduc on GitHub">Follow @alfreduc</a>
             <a className='blogLink' href='https://aluc.io/'>My blog real world demo</a>
           </div>
@@ -122,12 +122,7 @@ class App extends Component {
           <Paper>
             <FormControl component="fieldset" style={{ margin: 10 }}>
               <FormLabel component="legend">Select Type</FormLabel>
-              <RadioGroup
-                aria-label="type"
-                name="type"
-                value={this.state.type}
-                onChange={this.handleClick}
-              >
+              <RadioGroup aria-label="type" name="type" value={this.state.type} onChange={this.handleClick}>
                 {TypeElList}
               </RadioGroup>
             </FormControl>
@@ -137,7 +132,7 @@ class App extends Component {
           <ReactUtterences
             key={hashKey}
             hashKey={hashKey}
-            repo={GITHUB_DEMO_COMMENT_NAMESPACE_REPO}
+            repo={`${GITHUB_NAMESPACE}/${GITHUB_REPO_COMMENTS}`}
             type={this.state.type}
             specificTerm={this.state.specificTerm}
             issueNumber={this.state.issueNumber}
@@ -145,7 +140,7 @@ class App extends Component {
           />
         </div>
         <GithubCorner
-          href={GITHUB_COMPONENT_REPO_URL}
+          href={GITHUB_URL_REACT_UTTERANCES}
           bannerColor='#886ce4'
         />
       </div>
