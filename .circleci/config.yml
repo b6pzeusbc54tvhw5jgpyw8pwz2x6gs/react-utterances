@@ -1,0 +1,66 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:8.12-stretch-browsers
+
+version: 2
+jobs:
+  build_only:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: &restore_cache
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run: &yarn_install_build |
+          yarn install
+          yarn workspace react-utterances run build
+      - save_cache: &save_cache
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+  build_for_publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore_cache
+      - run: *yarn_install_build
+      - save_cache: *save_cache
+      - persist_to_workspace:
+          root: packages/component
+          paths:
+            - lib/*
+
+  npm_publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: packages/component/lib
+      - run: |
+          echo "//registry.npmjs.org/:_authToken=$CIRCLECI_NPM_TOKEN" >> ~/.npmrc
+          yarn workspace react-utterances publish
+
+workflows:
+  version: 2
+  untagged_jobs:
+    jobs:
+      - build_only
+  tagged_jobs:
+    jobs:
+      - build_for_publish:
+          filters:
+            tags:
+              only: /^react-utterances@.*/
+            branches:
+              ignore: /.*/
+      - npm_publish:
+          requires:
+            - build
