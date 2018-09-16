@@ -1,40 +1,19 @@
-# react-utterances
-react-utterances is the react component for [utterances][utterances] that is a
-lightweight comments widget built on GitHub issues. To get started, checkout
-https://utteranc.es
+# react-utterances monorepo
+[react-utterances][npm_reactutterances] is the react component for
+[utterances][utterances] that is a lightweight comments widget built on GitHub
+issues. To get started, checkout https://utteranc.es
 
-Check out below:
-- [live demo][livedemo]
-- [live demo on sandbox][livedemo_sandbox]
-- [realworld blog usage][alucio]
+This monorepo project includes `react-utterances`, `react-utterances-demo`
+packages. You can check out each package or demo:
+- [react-utterances package][component]
+- [react-utterances-demo package][livedemocode] and 
+  [live demo website][livedemo_website] and 
+  [live demo in codesandbox][livedemo_codesandbox]
+- [real world use case][alucio] in my blog
 
-## install
-
-```sh
-$ yarn add react-utterances
-```
-
-## usage
-
-```
-import React, { Component } from 'react'
-import ReactUtterences, { identifierTypes } 'react-utterances'
-
-const repo = 'github-namespace/project-name'
-class MyComponent extends Component {
-  render() {
-    return (
-      <div>
-        <h1>What is Lorem Ipsum?</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-        <ReactUtterences repo={repo} type={'url'} />
-      </div>
-    )
-  }
-}
-```
-
-[utterances]: https://utteranc.es/
-[livedemo]: https://kwk5x0nyr7.codesandbox.io/
-[livedemo_sandbox]: https://codesandbox.io/s/kwk5x0nyr7
+[npm_reactutterances]: https://www.npmjs.com/package/react-utterances
+[component]: https://github.com/b6pzeusbc54tvhw5jgpyw8pwz2x6gs/react-utterances/tree/master/packages/component
+[livedemocode]: https://github.com/b6pzeusbc54tvhw5jgpyw8pwz2x6gs/react-utterances/tree/master/packages/demo
+[livedemo_website]: https://kwk5x0nyr7.codesandbox.io/my-first-post
+[livedemo_codesandbox]: https://codesandbox.io/s/kwk5x0nyr7
 [alucio]: https://aluc.io/
