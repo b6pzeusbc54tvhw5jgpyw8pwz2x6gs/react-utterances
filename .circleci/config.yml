@@ -71,13 +71,13 @@ workflows:
               ignore: /.*/
       - npm_publish_test:
           requires:
-            - build
+            - build_for_publish
           filters:
             tags:
               only: /^react-utterances@\d+?\.\d+?\.\d+?-test\.\d+?$/
       - npm_publish:
           requires:
-            - build
+            - build_for_publish
           filters:
             tags:
               # npm 'latest' tag release. regexp ends  with $
