@@ -48,13 +48,15 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=$CIRCLECI_NPM_TOKEN" >> ~/.npmrc
       - run: yarn workspace react-utterances publish
 
-  npm_publish:
+  npm_publish_test:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace: *attach_workspace
       - run: *register_npm_token
-      - run: yarn workspace react-utterances publish --tag test
+      - run: |
+          NPM_TAG=$(node -e "console.log(process.env.CIRCLE_TAG.split('@')[1].split('-')[1].split('.')[0])")
+          yarn workspace react-utterances publish --tag $NPM_TAG
 
 workflows:
   version: 2
@@ -66,19 +68,20 @@ workflows:
       - build_for_publish:
           filters:
             tags:
-              only: /^react-utterances@\d+?\.\d+?\.\d+?/
+              only:
+                - /^react-utterances@\d+?\.\d+?\.\d+?-\w+?\.\d+?$/
+                - /^react-utterances@\d+?\.\d+?\.\d+?$/
             branches:
               ignore: /.*/
       - npm_publish_test:
           requires:
-            - build
+            - build_for_publish
           filters:
             tags:
-              only: /^react-utterances@\d+?\.\d+?\.\d+?-test\.\d+?$/
+              only: /^react-utterances@\d+?\.\d+?\.\d+?-\w+?\.\d+?$/
       - npm_publish:
           requires:
-            - build
+            - build_for_publish
           filters:
             tags:
-              # npm 'latest' tag release. regexp ends  with $
               only: /^react-utterances@\d+?\.\d+?\.\d+?$/
