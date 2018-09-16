@@ -48,7 +48,7 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=$CIRCLECI_NPM_TOKEN" >> ~/.npmrc
       - run: yarn workspace react-utterances publish
 
-  npm_publish:
+  npm_publish_test:
     <<: *defaults
     steps:
       - checkout
