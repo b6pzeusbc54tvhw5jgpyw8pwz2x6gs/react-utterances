@@ -15,7 +15,7 @@ jobs:
       - checkout
       - restore_cache: &restore_cache
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: &yarn_install_build |
@@ -24,7 +24,7 @@ jobs:
       - save_cache: &save_cache
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
 
   build_for_publish:
     <<: *defaults
@@ -42,11 +42,19 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
+      - attach_workspace: &attach_workspace
           at: packages/component/lib
-      - run: |
+      - run: &register_npm_token |
           echo "//registry.npmjs.org/:_authToken=$CIRCLECI_NPM_TOKEN" >> ~/.npmrc
-          yarn workspace react-utterances publish
+      - run: yarn workspace react-utterances publish
+
+  npm_publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace: *attach_workspace
+      - run: *register_npm_token
+      - run: yarn workspace react-utterances publish --tag test
 
 workflows:
   version: 2
@@ -58,9 +66,19 @@ workflows:
       - build_for_publish:
           filters:
             tags:
-              only: /^react-utterances@.*/
+              only: /^react-utterances@\d+?\.\d+?\.\d+?/
             branches:
               ignore: /.*/
+      - npm_publish_test:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^react-utterances@\d+?\.\d+?\.\d+?-test\.\d+?$/
       - npm_publish:
           requires:
             - build
+          filters:
+            tags:
+              # npm 'latest' tag release. regexp ends  with $
+              only: /^react-utterances@\d+?\.\d+?\.\d+?$/
