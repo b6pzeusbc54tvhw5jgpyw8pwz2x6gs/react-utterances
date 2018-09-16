@@ -66,7 +66,7 @@ workflows:
       - build_for_publish:
           filters:
             tags:
-              only: /^react-utterances@\d+?\.\d+?\.\d+?/
+              only: /^react-utterances.*/
             branches:
               ignore: /.*/
       - npm_publish_test:
