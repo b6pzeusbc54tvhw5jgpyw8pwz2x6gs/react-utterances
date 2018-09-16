@@ -34,9 +34,9 @@ jobs:
       - run: *yarn_install_build
       - save_cache: *save_cache
       - persist_to_workspace:
-          root: packages/component
+          root: packages/component/lib
           paths:
-            - lib/*
+            - *
 
   npm_publish:
     <<: *defaults
