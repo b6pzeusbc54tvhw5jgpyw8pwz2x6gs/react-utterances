@@ -57,6 +57,11 @@ class App extends Component {
     scriptEl.async = true
     scriptEl.defer = true
     document.head.appendChild(scriptEl)
+
+    const metaEl = document.createElement('meta')
+    metaEl.name = 'og:title'
+    metaEl.content = 'react-utterances og:title'
+    document.head.appendChild(metaEl)
   }
 
   render() {
