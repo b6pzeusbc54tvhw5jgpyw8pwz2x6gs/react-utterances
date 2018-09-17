@@ -36,7 +36,7 @@ jobs:
       - persist_to_workspace:
           root: packages/component/lib
           paths:
-            - *
+            - "*"
 
   npm_publish:
     <<: *defaults
