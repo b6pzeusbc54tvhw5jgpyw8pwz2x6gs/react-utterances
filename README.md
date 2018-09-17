@@ -1,4 +1,8 @@
 # react-utterances monorepo
+
+[![npm version](https://badge.fury.io/js/react-utterances.svg)](https://badge.fury.io/js/react-utterances)
+[![CircleCI](https://circleci.com/gh/b6pzeusbc54tvhw5jgpyw8pwz2x6gs/react-utterances.svg?style=svg)](https://circleci.com/gh/b6pzeusbc54tvhw5jgpyw8pwz2x6gs/react-utterances)
+
 [react-utterances][npm_reactutterances] is the react component for
 [utterances][utterances] that is a lightweight comments widget built on GitHub
 issues. To get started, checkout https://utteranc.es
