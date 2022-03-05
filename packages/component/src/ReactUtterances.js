@@ -8,6 +8,7 @@ const validTypeList = [
   'og:title',
   'issue-number',
   'issue-term',
+  'theme'
 ]
 
 const getAttrName = type => {
@@ -48,7 +49,7 @@ class ReactUtterences extends Component {
   }
 
   componentDidMount() {
-    const { repo, type, specificTerm, issueNumber } = this.props
+    const { repo, type, specificTerm, issueNumber, theme } = this.props
     const attrName = getAttrName(type)
     const value = getAttrValue(type, specificTerm, issueNumber)
     if( type === 'issue-term' && ! value ) {
@@ -62,6 +63,7 @@ class ReactUtterences extends Component {
     scriptEl.src = 'https://utteranc.es/client.js'
     scriptEl.async = true
     scriptEl.setAttribute('repo', repo)
+    if(theme) scriptEl.setAttribute('theme', theme)
     scriptEl.setAttribute('crossorigin', 'anonymous')
     scriptEl.setAttribute(attrName, value)
     scriptEl.onload = () => this.setState({ pending: false })
@@ -119,6 +121,7 @@ ReactUtterences.propTypes = {
   issueNumber: PropTypes.number,
   hashKey: PropTypes.string,
   debug: PropTypes.bool,
+  theme: PropTypes.string
 }
 
 export default ReactUtterences
